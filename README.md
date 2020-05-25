@@ -1,4 +1,4 @@
-# Queue Emails
+# Queue Emails - Múltiplas Filas
 
 ## Docker
 
@@ -29,6 +29,7 @@ Após instalação rode o comando:
 
 ## Startup
 > ``` yarn dev ```
+
 
 ## Rotas
 
