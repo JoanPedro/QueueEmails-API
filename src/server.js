@@ -10,6 +10,7 @@ server.use(express.json());
 
 consign()
   .include('./src/config')
+  .then('./src/app/jobs')
   .then('./src/app/lib')
   .then('./src/app/models')
   .then('./src/app/controllers')

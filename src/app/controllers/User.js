@@ -1,7 +1,6 @@
 module.exports = server => {
-  
-  const Mail = server.src.app.lib.Mail.mailerTransport;
-  
+  const Queue = server.src.app.lib.Queue.mailQueue;
+
   const store = async (req, res) => {
     const user = {...req.body}
     
@@ -10,13 +9,9 @@ module.exports = server => {
     //   email: user.email,
     //   password: user.password,
     // };
-
-    await Mail.sendMail({
-      from: 'Queue Teste <queue@queuetest.com.br',
-      to: `${user.name} <${user.email}>`,
-      subject: 'Cadastro de Usuário',
-      html: `Olá, ${user.name}, bem vindo ao sistema de fila :D !`
-    })
+    
+    // Adicionar Job RegistrationMail na fila;
+    await Queue.add({ user });
 
     return res.json(user);
   }
