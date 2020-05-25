@@ -1,10 +1,8 @@
 import Queue from 'bull';
+import redisConfig from '../../config/redis';
 
-module.exports = server => {
-  const redisConfig = server.src.config.redis.redisConfig;
-  const registrationMail = server.src.app.jobs.RegistrationMail;
+import RegistrationMail from '../jobs/RegistrationMail';
 
-  const mailQueue = new Queue(registrationMail.key, redisConfig);
+const mailQueue = new Queue(RegistrationMail.key, redisConfig)
 
-  return { mailQueue }
-}
+export default mailQueue;

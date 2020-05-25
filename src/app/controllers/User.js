@@ -1,6 +1,7 @@
-module.exports = server => {
-  const Queue = server.src.app.lib.Queue.mailQueue;
+import Queue from '../lib/Queue';
 
+module.exports = server => {
+  
   const store = async (req, res) => {
     const user = {...req.body}
     

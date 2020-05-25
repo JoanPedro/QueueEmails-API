@@ -1,8 +1,4 @@
 import nodemailer from 'nodemailer';
+import mailConfig from '../../config/mail'
 
-module.exports = server => {
-  const mailConfig = server.src.config.mail.mailConfig;
-  const mailerTransport = nodemailer.createTransport(mailConfig);
-
-  return { mailerTransport }
-}
+export default nodemailer.createTransport(mailConfig);
