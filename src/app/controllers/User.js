@@ -11,8 +11,10 @@ module.exports = server => {
     //   password: user.password,
     // };
     
-    // Adicionar Job RegistrationMail na fila;
-    await Queue.add({ user });
+    // Fila 1 (Job -> RegistrationMail): Que envia o Email para o Mailtrap
+    await Queue.add('RegistrationMail', { user });
+    // Fila 2 (Job -> UserReport): Que printa no console os dados do usuário.
+    await Queue.add('UserReport', { user });
 
     return res.json(user);
   }

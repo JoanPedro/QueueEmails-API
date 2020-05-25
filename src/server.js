@@ -12,12 +12,11 @@ consign()
   .include('./src/config')
   .then('./src/app/jobs')
   .then('./src/app/lib')
-  .then('./src/app/models')
+  //.then('./src/app/models')
   .then('./src/app/controllers')
   .then('./src/routes.js')
   .into(server)
 ;
-console.log(server.src)
 
 server.listen(3333, () => {
   console.log(`Server is running on http://localhost:${PORT}`)
