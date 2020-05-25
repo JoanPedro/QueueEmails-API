@@ -1,4 +1,7 @@
 module.exports = server => {
+  
+  const Mail = server.src.app.lib.Mail.mailerTransport;
+  
   const store = async (req, res) => {
     const user = {...req.body}
     
@@ -8,7 +11,12 @@ module.exports = server => {
     //   password: user.password,
     // };
 
-    // Enviar um Email
+    await Mail.sendMail({
+      from: 'Queue Teste <queue@queuetest.com.br',
+      to: `${user.name} <${user.email}>`,
+      subject: 'Cadastro de Usuário',
+      html: `Olá, ${user.name}, bem vindo ao sistema de fila :D !`
+    })
 
     return res.json(user);
   }

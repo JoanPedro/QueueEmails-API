@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 const server = express();
 const PORT = 3333;
@@ -8,7 +9,10 @@ server.use(express.urlencoded({extended: true}));
 server.use(express.json());
 
 consign()
-  .include('./src/app')
+  .include('./src/config')
+  .then('./src/app/lib')
+  .then('./src/app/models')
+  .then('./src/app/controllers')
   .then('./src/routes.js')
   .into(server)
 ;
